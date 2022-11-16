@@ -78,7 +78,7 @@ rm -r coming-soon-evening-html.zip
 Vamos al navegador e ingresamos la siguiente ruta: [https://127.0.0.1](https://127.0.0.1)
 
 
-![Localhost ejercicio BEDU](./images/BEDU%20postwork%20modulo%204.png =250x)
+![Localhost ejercicio BEDU](./images/BEDU%20postwork%20modulo%204.png)
 
 
 
