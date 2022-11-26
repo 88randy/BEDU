@@ -1,12 +1,8 @@
-# Postwork
+# Sesión 04: Fundamentos de DevSecOps
 
-Ejercicio con Docker del postwork de la sesión 14 - 11 - 2022
+Para este ejercicio debemos tener [Docker](https://docs.docker.com/engine/install/rhel/) instalado
 
-
-Ya tener docker instalado
-
-
-## Instalación
+## Configuración
 
 Abrir terminal y descargar la imagen httpd
 
