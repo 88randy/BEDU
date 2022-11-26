@@ -1,5 +1,7 @@
 # Presentación de proyecto
 
+Link al proyecto https://github.com/88randy/BEDU-proyecto-blog.git
+
 Para clonar el repositorio ejecutar:
 
 ```
