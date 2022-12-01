@@ -7,6 +7,10 @@ public class ComandoDivide extends ComandoCalculadora implements Comando{
     }
     public float ejecutar(){
 
-        return acumulador / valor;
+        if ( valor == 0 ){
+            throw new ArithmeticException("No es posible dividir entre cero");
+        }else{
+            return acumulador / valor;
+        }
     }
 }
