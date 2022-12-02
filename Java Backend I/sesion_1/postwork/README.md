@@ -4,19 +4,21 @@
 
 En esta sesión aprendimos qué es Maven y cómo podemos utilizarlo para automatizar procesos como compilación y ejecución de proyectos. Una parte fundamental son las dependencias que nos ayudarán a extender el potencial de nuestros proyectos.
 
+## Checklist
+
+:white_check_mark: A. Archivo de configuración pom.xml		
+
+:white_check_mark: B. Inclusión de un repositorio de git en el proyecto	
+
+:white_check_mark: C. Ejecución correcta de la dependencia gdx
+
 ## Indicaciones generales
 
 El objetivo de este postwork agregar un repositorio en git a tu proyecto a partir de Maven con la dependencia [gdx](https://libgdx.com/wiki/articles/maven-integration).
 
-## Checklist
-
-:white_check_mark: a. Archivo de configuración pom.xml		
-
-:white_check_mark: b. Inclusión de un repositorio de git en el proyecto	
-
-:white_check_mark: c. Ejecución correcta de la dependencia gdx
-
 ___
+
+## **Solución**
 
 Creamos un nuevo proyecto, en este utilizamos IntelliJ IDEA.
 
@@ -212,6 +214,7 @@ C:.
                 └───default-testCompile
                         inputFiles.lst
 ```
+## Ejecutamos
 
 Dentro de la carpeta **`target`** vamos a encontrar el archivo **`postwork-1.0-SNAPSHOT.jar`**, ahora vamos a ejecutarlo desde la terminal con el comando **`java - jar target\postwork-1.0-SNAPSHOT.jar`**
 
