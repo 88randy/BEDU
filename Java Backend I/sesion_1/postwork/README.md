@@ -214,7 +214,7 @@ C:.
                 └───default-testCompile
                         inputFiles.lst
 ```
-## Ejecutamos
+## Ejecución
 
 Dentro de la carpeta **`target`** vamos a encontrar el archivo **`postwork-1.0-SNAPSHOT.jar`**, ahora vamos a ejecutarlo desde la terminal con el comando **`java - jar target\postwork-1.0-SNAPSHOT.jar`**
 

@@ -363,6 +363,6 @@ test {
 }
 ```
 
-## Ejecutamos
+## Ejecución
 
 ![Ejecución del programa](../images/pw_02.png)
