@@ -102,7 +102,7 @@ Abrimos el archivo `pom.xml` y modificamos la versión de Java a la que tenemos 
 </properties>
 ```
 
-Creamos dos carpetas dentro de `src/main/java/com/BEDU` y las nombramos `controller` y `model`.
+Creamos dos carpetas dentro de `src/main/java/com/BEDU/postwork` y las nombramos `controller` y `model`.
 
 ```
 ├───src
