@@ -310,10 +310,17 @@ Entramos a Postman (puede ser desde el navegador o alguna otra opción) y hacemo
 - DELETE para eliminiar un elemento 
 
 **`GET`**
+
 ![Petición GET](../images/pw_03.png)
+
 **`POST`**
+
 ![Petición POST](../images/pw_04.png)
+
 **`PUT`**
+
 ![Petición PUT](../images/pw_05.png)
+
 **`DELETE`**
+
 ![Petición DELETE](../images/pw_06.png)
