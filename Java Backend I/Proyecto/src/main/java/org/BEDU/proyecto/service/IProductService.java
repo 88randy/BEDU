@@ -3,16 +3,12 @@ package org.BEDU.proyecto.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.BEDU.proyecto.model.Product;
+import org.BEDU.proyecto.dto.ProductDTO;
 
 public interface IProductService {
-    List<Product> getAll();
-    
-    Optional<Product> findById(Long id);
-
-    Product create(Product data);
-
-    Product save(Product data);
-
-    public void deleteById(Long id);
+    List<ProductDTO> findAll();
+    Optional<ProductDTO> findById(Long id);
+    ProductDTO save(ProductDTO data);
+    void update(long id, ProductDTO data) throws Exception;
+    void delete(long id) throws Exception;
 }

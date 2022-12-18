@@ -6,63 +6,49 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.server.ResponseStatusException;
 
-import org.BEDU.proyecto.model.Product;
+import org.BEDU.proyecto.dto.ProductDTO;
 import org.BEDU.proyecto.service.IProductService;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    
+    private IProductService service;
+
     @Autowired
-    private IProductService productService;
+    public ProductController(IProductService service) {
+        this.service = service;
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> getAll() {
-        return productService.getAll();
+    public List<ProductDTO> findAll() {
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Product findById(@PathVariable Long id) {
-        Optional<Product> product = productService.findById(id);
-        if (!product.isPresent()) {
-            throw new RuntimeException("Producto no encontrado");
-        }
+    public ProductDTO findById(@PathVariable Long id) {
+        Optional<ProductDTO> product = service.findById(id);
         return product.get();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product create(@RequestBody Product product) {
-        return productService.create(product);
+    public ProductDTO save(@RequestBody ProductDTO data) {
+        return service.save(data);
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Product update(@PathVariable Long id, @RequestBody Product product) {
-        Optional<Product> optionalProduct = productService.findById(id);
-        if (optionalProduct.isPresent()) {
-            Product updatedProduct = optionalProduct.get();
-            updatedProduct.setName(product.getName());
-            updatedProduct.setPrice(product.getPrice());
-            return productService.save(updatedProduct);
-        }else{
-            throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "No se encontró el id"
-            );
-        }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable("id") Long id, @RequestBody ProductDTO data) throws Exception {
+        service.update(id, data);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public String delete(@PathVariable Long id) {
-        Optional<Product> optionalProduct = productService.findById(id);
-        if (optionalProduct.isPresent()) {
-            productService.deleteById(id);
-            return "Se eliminó correctamente el producto.";
-        }
-        return "No se eliminó el producto.";
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Long id) throws Exception {
+        service.delete(id);
     }
 }

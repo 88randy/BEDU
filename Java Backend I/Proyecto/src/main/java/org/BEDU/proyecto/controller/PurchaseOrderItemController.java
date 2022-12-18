@@ -7,50 +7,50 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.BEDU.proyecto.dto.CustomerDTO;
-import org.BEDU.proyecto.service.ICustomerService;
+import org.BEDU.proyecto.dto.PurchaseOrderItemDTO;
+import org.BEDU.proyecto.service.IPurchaseOrderItemService;
+
 
 @RestController
-@RequestMapping("/customers")
-public class CustomerController {
+@RequestMapping("/purchase-order-items")
+public class PurchaseOrderItemController {
 
-    private ICustomerService service;
+    private IPurchaseOrderItemService service;
 
     @Autowired
-    public CustomerController(ICustomerService service) {
+    public PurchaseOrderItemController(IPurchaseOrderItemService service) {
         this.service = service;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<CustomerDTO> findAll() {
+    public List<PurchaseOrderItemDTO> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDTO findById(@PathVariable Long id) {
-        Optional<CustomerDTO> customer = service.findById(id);
-        return customer.get();
+    public PurchaseOrderItemDTO findById(@PathVariable Long id) {
+        Optional<PurchaseOrderItemDTO> product = service.findById(id);
+        return product.get();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO save(@RequestBody CustomerDTO data) {
+    public PurchaseOrderItemDTO save(@RequestBody PurchaseOrderItemDTO data) {
         return service.save(data);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable("id") Long id, @RequestBody CustomerDTO data) throws Exception {
+    public void update(@PathVariable("id") Long id, @RequestBody PurchaseOrderItemDTO data) throws Exception {
         service.update(id, data);
     }
-
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) throws Exception {
         service.delete(id);
     }
+    
 }
-

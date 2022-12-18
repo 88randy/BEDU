@@ -3,20 +3,13 @@ package org.BEDU.proyecto.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.BEDU.proyecto.model.Customer;
+import org.BEDU.proyecto.dto.CustomerDTO;
 
 
 public interface ICustomerService {
-
-    List<Customer> getAll();
-    
-    Optional<Customer> findById(Long id);
-
-    Customer create(Customer data);
-
-    Customer save(Customer data);
-
-    public void deleteById(Long id);
-
+    List<CustomerDTO> findAll();
+    Optional<CustomerDTO> findById(Long id);
+    CustomerDTO save(CustomerDTO data);
+    void update(long id, CustomerDTO data) throws Exception;
+    void delete(long id) throws Exception;
 }
-
