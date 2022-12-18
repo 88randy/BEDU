@@ -1,6 +1,6 @@
-# **Java Backend I (Proyecto)**
+# **Java Backend I (Proyecto)** :green_book:
 
-## **Introducción**
+## **Introducción** :gem:
 En el siguiente proyecto creado a partir del curso Java Backend I impartido por BEDU en colaboración con HSBC, se presenta una API desarrollada con Spring Boot, que permite a los usuarios gestionar órdenes de compra, clientes y productos de manera eficiente y sencilla.
 
 Este permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre entidades de clientes, productos y órdenes de compra. Además, permite realizar consultas sobre estas entidades y sus relaciones.
@@ -11,7 +11,7 @@ Además, la aplicación utiliza una base de datos relacional para almacenar toda
 
 En resumen, este proyecto es una implementación de un API sencilla de gestión de órdenes de compra, clientes y productos, gracias a la utilización de Spring Boot y JPA.
 
-## Entidades
+## Entidades :books:
 Las entidades del sistema son:
 
 - `Customer`: representa a un cliente. Tiene un atributo `customer` que representa el nombre del cliente.
@@ -19,27 +19,27 @@ Las entidades del sistema son:
 - `PurchaseOrder`: representa una orden de compra. Tiene un atributo `date` que representa la fecha de la orden de compra y una relación con la entidad `Customer` que representa al cliente que realiza la compra. Además, tiene una relación con la entidad `PurchaseOrderItem`, que representa los productos incluidos en la orden de compra.
 - `PurchaseOrderItem`: representa un producto incluido en una orden de compra. Tiene una relación con la entidad `Product` que representa al producto y un atributo `quantity` que representa la cantidad del producto. Además, tiene una relación con la entidad `PurchaseOrder` que representa la orden de compra a la que pertenece.
 
-## Mapeos
+## Mapeos :maple_leaf:
 
 Se han creado mapeos entre las entidades y sus respectivos DTO (Data Transfer Object, objeto de transferencia de datos) para poder realizar operaciones de manera más sencilla y evitar problemas de seguridad. Los mapeos se encuentran en las interfaces `ICustomerMapper`, `IProductMapper`, `IPurchaseOrderMapper` y `IPurchaseOrderItemMapper`.
 
-## Repositorios
+## Repositorios :loop:
 
 Se han creado repositorios para cada entidad que permiten realizar operaciones CRUD sobre las mismas y realizar consultas. Los repositorios se encuentran en las interfaces `ICustomerRepository`, `IProductRepository`, `IPurchaseOrderRepository` y `IPurchaseOrderItemRepository`.
 
-## Controladores
+## Controladores :computer:
 
 Se han creado controladores para cada entidad que permiten realizar operaciones CRUD y consultas sobre las mismas. Los controladores son `CustomerController`, `ProductController`, `PurchaseOrderController` y `PurchaseOrderItemController`.
 
-## Servicios
+## Servicios :recycle:
 
 Se han creado servicios para cada entidad que realizan las operaciones necesarias sobre las entidades y sus relaciones. Los servicios son `CustomerService`, `ProductService`, `PurchaseOrderService` y `PurchaseOrderItemService`.
 
-## LOGS
+## LOGS :information_source:
 
 Se ha implementado el uso de logs ya que puede ser muy útil para mejorar la calidad y el rendimiento del proyecto, y para facilitar la solución de problemas que puedan presentarse durante su ejecución.
 
-## **Requerimientos**
+## **Requerimientos** :bookmark_tabs:
 
 - `java 15`
 - `Java(TM) SE Runtime Environment bu(ild 15)`
@@ -47,7 +47,7 @@ Se ha implementado el uso de logs ya que puede ser muy útil para mejorar la cal
 - Base de datos `MySQL`
 - Postman
 
-## **Instrucciones**
+## **Instrucciones** :clipboard:
 
 1. Clonar el repositorio del siguiente <a href="https://github.com/88randy/BEDU" target="_blank">Enlace</a>.
 
@@ -83,7 +83,7 @@ Se ha implementado el uso de logs ya que puede ser muy útil para mejorar la cal
    ```
    Una vez configurado el archivo con la información de la base de datos, guardamos cambios y cerramos.
 
-## **Ejecución del proyecto**
+## **Ejecución del proyecto** :sunglasses:
 
 Para ejecutar el proyecto podemo hacerlo desde la terminal con el comando.
 ```
@@ -189,7 +189,7 @@ Algunos ejemplos de operaciones que se pueden realizar son:
 Entre muchos otros ejemplos.
 
 
-## **Mejoras**
+## **Mejoras** :neckbeard:
 En cuanto a mejoras que se le podrían hacer al proyecto, algunas opciones que se me ocurren son:
 
 - Implementar validaciones en las entidades y en los mapeos para asegurar que los datos ingresados cumplen con ciertas condiciones.
@@ -201,7 +201,7 @@ En cuanto a mejoras que se le podrían hacer al proyecto, algunas opciones que s
 - Montar en Docker la aplicación
 
 
-## **Conclusiones**
+## **Conclusiones** :tada:
 Fue un verdadero reto y un gusto haber participado en el curso y debo decir que aprendí bastante y no me queda más que agradecer al Experto Jorge por su gran labor de compartir su conocimiento.
 
 Sobre el proyecto podemos concluir que:
