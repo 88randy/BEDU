@@ -3,6 +3,7 @@ package org.BEDU.proyecto.controller;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,14 @@ public class CustomerController {
         this.service = service;
     }
 
+    @SneakyThrows
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerDTO> findAll() {
         return service.findAll();
     }
 
+    @SneakyThrows
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDTO findById(@PathVariable Long id) {
@@ -35,6 +38,7 @@ public class CustomerController {
         return customer.get();
     }
 
+    @SneakyThrows
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerDTO save(@RequestBody CustomerDTO data) {
@@ -56,14 +60,7 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
-
-    /*@DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") Long id) throws Exception {
-        service.delete(id);
-    }*/
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         try{

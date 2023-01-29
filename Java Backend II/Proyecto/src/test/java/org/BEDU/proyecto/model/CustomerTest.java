@@ -1,20 +1,50 @@
 package org.BEDU.proyecto.model;
 
-import org.hibernate.exception.ConstraintViolationException;
-import org.junit.jupiter.api.Assertions;
+import lombok.SneakyThrows;
+import org.BEDU.proyecto.exception.ResourceNotFoundException;
+import org.BEDU.proyecto.repository.ICustomerRepository;
+import org.BEDU.proyecto.service.impl.CustomerServiceImpl;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
-import java.util.Set;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+
+import java.util.Optional;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.mockito.junit.jupiter.MockitoExtension;
+
+
+@ExtendWith(MockitoExtension.class)
 class CustomerTest {
+    @Mock
+    private ICustomerRepository repository;
+
+    @InjectMocks
+    private CustomerServiceImpl service;
+
+
+    /*
+    * Test verifica si el método delete() de la clase CustomerService está funcionando correctamente
+    */
+    @Test
+    public void testDelete() throws Exception {
+        Customer customer = new Customer(1L, "customer1");
+
+        when(repository.findById(1L)).thenReturn(Optional.of(customer));
+
+        service.delete(1L);
+
+        verify(repository, times(1)).deleteById(1L);
+    }
+
     /*
     * Test para comprobar que se establece correctamente el valor
     * del atributo "customer" en un objeto de la clase Customer
@@ -37,50 +67,27 @@ class CustomerTest {
     }
 
     /*
-    * Test para comprobar que se lanza una excepción cuando se intenta
-    * crear un objeto de la clase Customer con un valor null para el atributo "customer":
+    * Test para comprobar que se llama al método "findAll()" del repositorio al ejecutar el método "findAll()" del servicio
     */
-
+    @SneakyThrows
     @Test
-    public void testNullCustomer() {
-        Customer customer = new Customer();
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            customer.setCustomer(null);
-        });
+    public void testFindAll() {
+        service.findAll();
+        verify(repository, times(1)).findAll();
+
     }
-
-
-
 
     /*
-    * Test para comprobar que se lanza una excepción cuando se intenta crear
-    * un objeto de la clase Customer con un valor vacío para el atributo "customer"
+    * Test para comprobar que se llama al método "findById()" del repositorio al ejecutar el método "findById()" del servicio
     */
+
+    @SneakyThrows
     @Test
-    public void testEmptyCustomer() {
-        Customer customer = new Customer();
-        try {
-            customer.setCustomer("");
-            fail("Expected ConstraintViolationException to be thrown");
-        } catch (ConstraintViolationException e) {
-            // expected exception
-        }
+    public void testFindById() {
+        service.findById(1L);
+        verify(repository, times(1)).findById(1L);
+
     }
 
 
-
-    /*
-    * Test para comprobar que se lanza una excepción cuando se intenta crear
-    * dos objetos de la clase Customer con el mismo valor para el atributo "customer":
-    */
-    @Test
-    public void testUniqueCustomer() {
-        Customer customer1 = new Customer(1l, "pepito");
-        try {
-            Customer customer2 = new Customer(1l, "pepito");
-            fail("Expected PersistenceException to be thrown");
-        } catch (PersistenceException e) {
-            // expected exception
-        }
-    }
 }

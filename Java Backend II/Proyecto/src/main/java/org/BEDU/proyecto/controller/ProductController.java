@@ -3,6 +3,7 @@ package org.BEDU.proyecto.controller;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class ProductController {
         this.service = service;
     }
 
+    @SneakyThrows
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductDTO> findAll() {

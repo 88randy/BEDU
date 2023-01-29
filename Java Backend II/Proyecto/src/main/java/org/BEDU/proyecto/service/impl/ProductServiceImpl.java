@@ -6,6 +6,10 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.BEDU.proyecto.exception.InvalidDataException;
+import org.BEDU.proyecto.exception.NotFoundException;
+import org.BEDU.proyecto.exception.ResourceNotFoundException;
+import org.BEDU.proyecto.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +38,13 @@ public class ProductServiceImpl implements IProductService {
 
     public List<ProductDTO> findAll() {
         List<Product> products = repository.findAll();
-
+        if (products.isEmpty()) {
+            try {
+                throw new ResourceNotFoundException("No se encontraron productos en la base de datos", 404);
+            } catch (ResourceNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
         List<ProductDTO> mappedProducts = new LinkedList<>();
     
         for (Product c : products) {
@@ -45,10 +55,25 @@ public class ProductServiceImpl implements IProductService {
     }
 
     public Optional<ProductDTO> findById(Long id) {
-        return repository.findById(id).map(product -> mapper.toDTO(product));
+        Optional<Product> result = repository.findById(id);
+        if(result.isEmpty()){
+            try {
+                throw new ResourceNotFoundException("No se encontró un producto con el id:" + " especificado",404);
+            } catch (ResourceNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return result.map(product -> mapper.toDTO(product));
     }
 
     public ProductDTO save(ProductDTO data) {
+        if (data == null) {
+            try {
+                throw new InvalidDataException("Los datos proporcionados son inválidos", 400);
+            } catch (InvalidDataException e) {
+                throw new RuntimeException(e);
+            }
+        }
         Product entity = mapper.toEntity(data);
         logger.info("Creado con exito el producto: {} con un precio de: {}", data.getName(), data.getPrice());
         return mapper.toDTO(repository.save(entity));
@@ -56,9 +81,17 @@ public class ProductServiceImpl implements IProductService {
 
     public void update(long id, ProductDTO data) throws Exception {
         Optional<Product> result = repository.findById(id);
-    
+
         if (result.isEmpty()) {
-            logger.error("Intento Fallido ya que no se puede actualizar un producto que no existe");
+            throw new NotFoundException(404, "No se puede actualizar un producto que no existe");
+        }
+
+        if (data == null) {
+            try {
+                throw new InvalidDataException("Los datos proporcionados son inválidos", 400);
+            } catch (InvalidDataException e) {
+                throw new RuntimeException(e);
+            }
         }
     
         Product product = result.get();
@@ -71,9 +104,9 @@ public class ProductServiceImpl implements IProductService {
 
     public void delete(long id) throws Exception {
         Optional<Product> result = repository.findById(id);
-    
+
         if (result.isEmpty()) {
-            logger.error("Intento Fallido ya que no se puede eliminar un cliente que no existe");
+            throw new NotFoundException(404, "No se puede borrar un producto que no existe");
         }
     
         repository.deleteById(id);

@@ -5,6 +5,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.BEDU.proyecto.exception.InvalidDataException;
+import org.BEDU.proyecto.exception.NotFoundException;
+import org.BEDU.proyecto.exception.ResourceNotFoundException;
+import org.BEDU.proyecto.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,18 +37,25 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService{
 
     public List<PurchaseOrderDTO> findAll() {
         List<PurchaseOrder> purchaseOrder = repository.findAll();
-    
         return purchaseOrder.stream()
             .map(mapper::toDTO)
             .collect(Collectors.toUnmodifiableList());
     }
 
     public Optional<PurchaseOrderDTO> findById(Long id) {
-        return repository.findById(id).map(purchaseOrder -> mapper.toDTO(purchaseOrder));
+        Optional<PurchaseOrder> result = repository.findById(id);
+        return result.map(purchaseOrder -> mapper.toDTO(purchaseOrder));
     }
 
 
     public PurchaseOrderDTO save(PurchaseOrderDTO data) {
+        if (data == null) {
+            try {
+                throw new InvalidDataException("Los datos proporcionados son inválidos", 400);
+            } catch (InvalidDataException e) {
+                throw new RuntimeException(e);
+            }
+        }
         PurchaseOrder entity = mapper.toEntity(data);
         for (PurchaseOrderItem item : entity.getItems()) {
             item.setPurchaseOrder(entity);
@@ -55,9 +66,9 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService{
 
     public void update(long id, PurchaseOrderDTO data) throws Exception {
         Optional<PurchaseOrder> result = repository.findById(id);
-    
+
         if (result.isEmpty()) {
-            throw new Exception("No existe la orden de compra");
+            throw new NotFoundException(404, "No puede actualizar una orden de compra que no existe");
         }
     
         PurchaseOrder purchaseOrder = result.get();
@@ -75,9 +86,9 @@ public class PurchaseOrderServiceImpl implements IPurchaseOrderService{
 
     public void delete(long id) throws Exception {
         Optional<PurchaseOrder> result = repository.findById(id);
-    
+
         if (result.isEmpty()) {
-            throw new Exception("No existe la orden de compra");
+            throw new NotFoundException(404, "No puede borrar una orden de compra que no existe");
         }
     
         repository.deleteById(id);

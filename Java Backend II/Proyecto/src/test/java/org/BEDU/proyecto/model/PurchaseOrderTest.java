@@ -1,62 +1,59 @@
 package org.BEDU.proyecto.model;
 
-import org.hibernate.exception.ConstraintViolationException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.xml.validation.Validator;
-import java.math.BigDecimal;
-import java.util.Set;
+import org.BEDU.proyecto.dto.PurchaseOrderDTO;
+import org.BEDU.proyecto.exception.NotFoundException;
+import org.BEDU.proyecto.repository.IPurchaseOrderRepository;
+import org.BEDU.proyecto.service.impl.PurchaseOrderServiceImpl;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class PurchaseOrderTest {
+    @Mock
+    private IPurchaseOrderRepository repository;
+
+    @InjectMocks
+    private PurchaseOrderServiceImpl service;
 
     /*
-    * Test para comprobar que el nombre del producto no sea nulo
+    * Test para verificar que el método findById() devuelve un Optional vacío cuando no se encuentra una orden de compra con el id especificado
     */
+    @Test
+    public void testFindById_notFound() {
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+        assertFalse(service.findById(1L).isPresent());
+    }
 
     @Test
-    public void testProductNameNotNull() {
-        Product product = new Product();
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            product.setName(null);
-        });
+    public void testSave_invalidData() {
+        assertThrows(RuntimeException.class, () -> service.save(null));
     }
 
     /*
-    * Test para comprobar que el precio del producto no sea nulo
+    * Test para verificar que el método update() lanza una excepción cuando no se encuentra una orden de compra con el id especificado
     */
     @Test
-    public void testProductPriceNotNull() {
-        Product product = new Product();
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            product.setPrice(null);
-        });
+    public void testUpdate_notFound() {
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+        assertThrows(NotFoundException.class, () -> service.update(1L, new PurchaseOrderDTO()));
     }
 
-    /*
-    * Test para comprobar que la fecha de la orden de compra no sea nula:
+    /*Test para verificar que el método delete() lanza una excepción cuando no se encuentra una orden de compra con el id especificado:
     */
     @Test
-    public void testPurchaseOrderDateNotNull() {
-        PurchaseOrder purchaseOrder = new PurchaseOrder();
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            purchaseOrder.setDate(null);
-        });
-    }
-
-    /*
-    * Test para comprobar que el cliente de la orden de compra no sea nulo
-    */
-    @Test
-    public void testPurchaseOrderCustomerNotNull() {
-        PurchaseOrder purchaseOrder = new PurchaseOrder();
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            purchaseOrder.setCustomer(null);
-        });
+    public void testDelete_notFound() {
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+        assertThrows(NotFoundException.class, () -> service.delete(1L));
     }
 
 }

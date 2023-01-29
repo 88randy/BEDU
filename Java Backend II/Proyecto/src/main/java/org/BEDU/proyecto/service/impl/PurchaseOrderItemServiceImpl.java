@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import org.BEDU.proyecto.exception.NotFoundException;
+import org.BEDU.proyecto.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +36,7 @@ public class PurchaseOrderItemServiceImpl implements IPurchaseOrderItemService{
         for (PurchaseOrderItem c : purchaseOrderItem) {
             mappedPurchaseOrderItem.add(mapper.toDTO(c));
         }
-    
+
         return mappedPurchaseOrderItem;
     }
 
@@ -49,9 +51,9 @@ public class PurchaseOrderItemServiceImpl implements IPurchaseOrderItemService{
 
     public void update(long id, PurchaseOrderItemDTO data) throws Exception {
         Optional<PurchaseOrderItem> result = repository.findById(id);
-    
+
         if (result.isEmpty()) {
-            throw new Exception("No existe");
+            throw new NotFoundException(404, "No se puede actualizar un item de la orden de compra que no existe");
         }
     
         PurchaseOrderItem purchaseOrderItem = result.get();
@@ -65,9 +67,9 @@ public class PurchaseOrderItemServiceImpl implements IPurchaseOrderItemService{
 
     public void delete(long id) throws Exception {
         Optional<PurchaseOrderItem> result = repository.findById(id);
-    
+
         if (result.isEmpty()) {
-            throw new Exception("No existe");
+            throw new NotFoundException(404, "No se puede borrar un item de la orden de compra que no existe");
         }
     
         repository.deleteById(id);

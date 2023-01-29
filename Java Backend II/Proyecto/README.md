@@ -1,7 +1,12 @@
 # **Java Backend II (Proyecto)** :green_book:
 
+### Aviso: :warning:
+
+La aplicación se publicó en AWS junto con su base de datos disponible para su uso dando click en: [Mi aplicación HSBC-BEDU](http://hsbcbedu-env.eba-jjfsw8ss.us-east-1.elasticbeanstalk.com), el usuario general es `admin` y el password es `admin`.
+___
+
 ## **Introducción** :gem:
-En el siguiente proyecto creado a partir del curso Java Backend I y Java Backend II impartido por BEDU en colaboración con HSBC, se presenta una API desarrollada con Spring Boot, que permite a los usuarios gestionar órdenes de compra, clientes y productos de manera eficiente y sencilla.
+En el siguiente proyecto creado a partir del curso Java Backend II impartido por BEDU en colaboración con HSBC, se presenta una API desarrollada con Spring Boot, que permite a los usuarios gestionar órdenes de compra, clientes y productos de manera eficiente y sencilla.
 
 Este permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre entidades de clientes, productos y órdenes de compra. Además, permite realizar consultas sobre estas entidades y sus relaciones.
 
@@ -39,6 +44,22 @@ Se han creado servicios para cada entidad que realizan las operaciones necesaria
 
 Se ha implementado el uso de logs ya que puede ser muy útil para mejorar la calidad y el rendimiento del proyecto, y para facilitar la solución de problemas que puedan presentarse durante su ejecución.
 
+## Excepciones personalizadas :anger:
+
+Se han implementado excepciones personalizadas para indicar lo que sucede en diferentes casos de uso, se crearon las clases `DuplicateResourceException`, `InternalServerError`, `InvalidDataException`, `InvalidRequestException`, `NotFoundException`, `OperationNotAllowedException`, `ResourceNotFoundException`
+
+## Conjunto de pruebas unitarias :boom:
+
+Se ha creado un conjunto exhaustivo de pruebas unitarias suficientemente generales para verificar el funcionamiento de los componentes de la aplicación.
+
+##  Proceso de autenticación y niveles de usuario :door:
+
+La aplicación cuenta con un proceso de autenticación de usuarios para tener el conocimiento de quién hace cada una de las consultas, así como el nivel de cada usuario, dependiendo del usuario que haga la petición así como del nivel que este tenga, se le da acceso o se restringe el mismo a ciertas funcionalidades de la aplicación.
+
+## Publicación de la aplicación :triangular_flag_on_post:
+
+Se publicó la aplicación en los servicios de Amazon Web Services (AWS) así como la base de datos que utiliza, además está disponible para su uso dando click en: [Mi aplicación HSBC-BEDU](http://hsbcbedu-env.eba-jjfsw8ss.us-east-1.elasticbeanstalk.com), el usuario general es `admin` y el password es `admin`.
+
 ## **Requerimientos** :bookmark_tabs:
 
 - `java 15`
@@ -59,7 +80,7 @@ Se ha implementado el uso de logs ya que puede ser muy útil para mejorar la cal
 2. Ingresar a la carpeta del proyecto.
 
     ```
-    cd Bedu/Java Backend I/Proyecto
+    cd Bedu/Java Backend II/Proyecto
     ```
 
 3. Abrir el archivo `application.properties` con cualquier editor de texto.
@@ -189,26 +210,27 @@ Algunos ejemplos de operaciones que se pueden realizar son:
 Entre muchos otros ejemplos.
 
 
-## **Mejoras** :neckbeard:
+## **Mejoras** :blush:
 En cuanto a mejoras que se le podrían hacer al proyecto, algunas opciones que se me ocurren son:
 
-- Implementar validaciones en las entidades y en los mapeos para asegurar que los datos ingresados cumplen con ciertas condiciones.
 - Crear una interfaz de usuario para que los usuarios finales puedan interactuar con el sistema de manera más sencilla.
-- Implementar seguridad en el proyecto para proteger las operaciones y consultas disponibles y restringir el acceso a ciertos usuarios.
-- Agregar soporte para transacciones para garantizar la integridad de los datos.
-- Mejorar la documentación del proyecto y agregar ejemplos de uso de la API REST.
-- Realizar pruebas unitarias y de integración para asegurar la calidad del código.
+- Mejorar la documentación del proyecto y agregar mejores ejemplos de uso de la API REST.
 - Montar en Docker la aplicación
 
 
 ## **Conclusiones** :tada:
-Fue un verdadero reto y un gusto haber participado en el curso y debo decir que aprendí bastante y no me queda más que agradecer a los Expertos Jorge y Javier por su gran labor de compartir su conocimiento.
+Fue un verdadero reto y un gusto haber participado en el curso y debo decir que aprendí bastante y no me queda más que agradecer al Experto Javier por su gran labor de compartir su conocimiento.
 
 Sobre el proyecto podemos concluir que:
 
-- El proyecto permite realizar operaciones CRUD y consultas sobre las entidades de clientes, productos y órdenes de compra.
-- Se han creado mapeos y repositorios para facilitar el trabajo con las entidades y sus relaciones.
+- El proyecto permite realizar operaciones CRUD y consultas sobre las entidades de clientes, productos y órdenes de compra dentro de cada uno de los controladores.
 - Los controladores y servicios implementan las operaciones y consultas disponibles a través de la API REST.
+- Cuenta con un conjunto exhaustivo de pruebas unitarias suficientemente generales para verificar el funcionamiento de los componentes de la aplicación.
+- Se han creado mapeos y repositorios para facilitar el trabajo con las entidades y sus relaciones.
+- La aplicación cuenta con un proceso de autenticación de usuarios para tener el conocimiento de quién hace cada una de las consultas, así como el nivel de cada usuario
 - Se implementó el uso de logs para proporcionar información de monitoreo.
+- Dependiendo del usuario que haga la petición así como del nivel que este tenga, se le da acceso o se restringe el mismo a ciertas funcionalidades de la aplicación
+- La aplicación está publicada y disponible para su uso mediante AWS.
+
 
 
