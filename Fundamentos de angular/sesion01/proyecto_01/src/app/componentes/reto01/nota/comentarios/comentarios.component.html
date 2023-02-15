@@ -1,0 +1,11 @@
+<p><b>Comentarios:</b></p>
+
+<br>
+<input type="text" [(ngModel)]="valor" placeholder="Ingresa un comentario">
+<br><br>
+<button (click) = "guardaComentario()">Enviar</button>
+<br>
+<p *ngIf="comentarios.length < 1">Se el primero en compartir tus comentarios!!!</p>
+<ul>
+    <li *ngFor="let comentario of comentarios">{{comentario}}</li>
+</ul>

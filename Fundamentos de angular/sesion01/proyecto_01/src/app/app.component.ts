@@ -8,7 +8,36 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  constructor() {
+  mensaje = 'Hola mundo';
+
+  num1 = 5;
+
+  num2 = 3;
+
+  bool = false;
+
+  foo(){
+    return 'Hola mundo';
+  }
+
+  src = ''
+  alt = ''
+
+  efecto(): void{
+    console.log("se dio click al botón");
+  }
+
+  valor = "Hola"
+
+  super = true;
+
+  lista = ["arroz", "pan", "tortillas", "leche", "atún"]
+
+  condicion1 = true;
+
+  condicion2 = false;
+
+  /* constructor() {
     this.saludo();
     this.imprimeIMC(this.calculaIMC(80, 1.84));
   }
@@ -41,6 +70,6 @@ export class AppComponent {
 
   imprimeIMC(imc: number) {
     console.log('tu IMC es: ' + imc);
-  }
+  } */
   
 }
