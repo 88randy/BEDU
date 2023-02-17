@@ -1,5 +1,4 @@
 *.war
-*.java
 *.exe
 # Local .terraform directories
 **/.terraform/*
