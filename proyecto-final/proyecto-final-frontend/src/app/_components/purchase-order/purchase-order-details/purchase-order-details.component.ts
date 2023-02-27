@@ -12,6 +12,7 @@ export class PurchaseOrderDetailsComponent implements OnInit{
   id!: number;
   purchaseOrder: any;
   dateDisplayFormat = 'dd-MM-yyyy HH:mm:ss';
+  responseStatus = 200;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +27,9 @@ export class PurchaseOrderDetailsComponent implements OnInit{
       .subscribe(data => {
         console.log(data);
         this.purchaseOrder = data;
-      }, error => console.log(error));
+      }, error => {
+        this.responseStatus = error.status;
+      });
   }
 
   getTotal(): number {

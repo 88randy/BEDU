@@ -15,7 +15,9 @@
                                 <p class="mb-2 pb-1" style="color: #2b2a2a;">{{ currentUser.email }}</p>
                                 <h6>Roles</h6>
                                 <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item" *ngFor="let role of currentUser.roles">{{ role }}</li>
+                                    <li class="list-group-item" *ngFor="let role of currentUser.roles">
+                                        {{ role === 'ROLE_ADMIN' ? 'Administrador' : role === 'ROLE_MODERATOR' ? 'Moderador' : role === 'ROLE_USER' ? 'Usuario' : 'Otro' }}
+                                    </li>
                                 </ol>
                             </div>
                         </div>

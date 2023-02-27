@@ -24,6 +24,9 @@
             </div>
         </div>
         <hr>
+        <div class="search">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Buscar producto por nombre o id">
+        </div>
         <table class="table table-striped text-center">
             <thead>
                 <tr>
@@ -34,16 +37,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of products">
+                <tr *ngFor="let product of products | filter:searchText">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>$ {{ product.price }}</td>
                     <td>
-                        <a [routerLink]="['/products/search/', product.id]" class="btn btn-primary">Consultar</a>
-                        <span> &nbsp; </span>
-                        <a [routerLink]="['/products/update/', product.id]" class="btn btn-secondary">Editar</a>
-                        <span> &nbsp; </span>
-                        <a [routerLink]="['/products/delete/', product.id]" class="btn btn-danger">Borrar</a>
+                        <div class="row">
+                            <div class="col">
+                                <a [routerLink]="['/products/search/', product.id]" class="btn btn-primary">Consultar</a>
+                            </div>
+                            <div class="col" *ngIf="roles.includes('ROLE_ADMIN') || roles.includes('ROLE_MODERATOR')">
+                                <a [routerLink]="['/products/update/', product.id]" class="btn btn-secondary">Editar</a>
+                            </div>
+                            <div class="col" *ngIf="roles.includes('ROLE_ADMIN')">
+                                <a [routerLink]="['/products/delete/', product.id]" class="btn btn-danger">Borrar</a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

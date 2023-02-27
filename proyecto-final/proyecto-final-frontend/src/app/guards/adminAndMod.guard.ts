@@ -17,7 +17,6 @@ export class AdminAndModGuard implements CanActivate {
         try{
             const user = this.storageService.getUser();
             const isAdmin = user.roles.includes('ROLE_ADMIN') || user.roles.includes('ROLE_MODERATOR');
-            
             if (isAdmin) {
                 return true;
             } else {

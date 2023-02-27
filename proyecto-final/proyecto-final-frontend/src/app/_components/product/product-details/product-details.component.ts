@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/_services/product/product.service';
 export class ProductDetailsComponent implements OnInit{
   id!: number;
   product: any;
+  responseStatus = 200;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,8 @@ export class ProductDetailsComponent implements OnInit{
       .subscribe(data => {
         console.log(data);
         this.product = data;
-      }, error => console.log(error));
+      }, error => {
+        this.responseStatus = error.status;
+      });
   }
 }

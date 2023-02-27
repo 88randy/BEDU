@@ -1,13 +1,21 @@
 <div class="container">
     <div class="col-md-6">
         <h2>Borrar cliente</h2>
-        <p>Estas seguro que deseas borrar a <b>{{customer.customer}}</b> ?</p>
-        <div>
+        <p *ngIf="customer?.id">Estas seguro que deseas borrar a <b>{{customer.customer}}</b> ?</p>
+        <div *ngIf="customer?.id">
             <p>
                 <button type="submit" class="btn btn-danger" (click)="deleteCustomer()">Borrar</button>
                 <span> &nbsp; </span>
                 <a class="btn btn-secondary" [routerLink]="['/customers']">Cancelar</a>
             </p>
+        </div>
+        <div *ngIf="!customer?.id">
+            <div class="alert alert-warning" role="alert">
+                <p>No se encontró el cliente.</p>
+                <div class="text-end">
+                    <a class="btn btn-secondary" [routerLink]="['/customers']">Regresar</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

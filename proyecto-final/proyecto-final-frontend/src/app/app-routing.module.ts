@@ -27,15 +27,16 @@ import { PurchaseOrderCreateComponent } from './_components/purchase-order/purch
 import { PurchaseOrderUpdateComponent } from './_components/purchase-order/purchase-order-update/purchase-order-update.component';
 import { PurchaseOrderDetailsComponent } from './_components/purchase-order/purchase-order-details/purchase-order-details.component';
 import { PurchaseOrderDeleteComponent } from './_components/purchase-order/purchase-order-delete/purchase-order-delete.component';
+import { Page404Component } from './_components/errors/page404/page404.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
-  { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AdminAndModAndUserGuard] },
+  { path: 'user', component: BoardUserComponent, canActivate: [AdminAndModAndUserGuard] },
+  { path: 'mod', component: BoardModeratorComponent, canActivate: [AdminAndModGuard] },
+  { path: 'admin', component: BoardAdminComponent, canActivate: [AdminGuard]},
   { path: 'customers', component: CustomerListComponent, canActivate: [AdminAndModAndUserGuard] },
   { path: 'customers/search/:id', component: CustomerDetailsComponent, canActivate: [AdminAndModAndUserGuard] },
   { path: 'customers/add', component: CustomerCreateComponent, canActivate: [AdminAndModGuard] },
@@ -53,6 +54,8 @@ const routes: Routes = [
   { path: 'purchase-orders/delete/:id', component: PurchaseOrderDeleteComponent, canActivate: [AdminGuard] },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '404', component: Page404Component },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

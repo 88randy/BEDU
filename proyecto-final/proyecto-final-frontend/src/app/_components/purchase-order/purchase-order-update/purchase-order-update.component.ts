@@ -24,6 +24,7 @@ export class PurchaseOrderUpdateComponent implements OnInit {
   products!: Product[];
   newProduct: Product = {id:0, name:"", price:0};
   newQuantity: number = 1;
+  responseStatus = 200;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -46,7 +47,7 @@ export class PurchaseOrderUpdateComponent implements OnInit {
           item.product = this.products.find((product) => product.id === item.product.id)!;
         });
       });
-    }, error => console.log(error));
+    }, error => this.responseStatus = error.status);
   }
 
   updatePurchaseOrder() {

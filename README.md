@@ -9,3 +9,5 @@ En este repositorio encontrarás el trabajo y proyectos que realicé en el curso
 - [`Módulo 01:` Desarrollo de software ágil](./Desarrollo%20de%20software%20%C3%A1gil/)
 - [`Módulo 02:` Java Backend I](./Java%20Backend%20I/)
 - [`Módulo 03:` Java Backend II](./Java%20Backend%20II/)
+- [`Módulo 04:` Fundamentos de angular](./Fundamentos%20de%20angular/)
+- [`Proyecto final:` Proyecto final](./proyecto-final/)

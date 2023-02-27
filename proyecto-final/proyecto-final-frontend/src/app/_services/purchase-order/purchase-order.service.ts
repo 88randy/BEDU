@@ -8,7 +8,7 @@ import { PurchaseOrder } from 'src/app/_interface/purchaseOrder.interface';
 })
 export class PurchaseOrderService {
   
-  private baseUrl = 'http://localhost:8080/api/purchase-orders';
+  private baseUrl = 'http://127.0.0.1:8080/api/purchase-orders';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

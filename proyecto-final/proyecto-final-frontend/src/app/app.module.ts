@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 
-import { httpInterceptorProviders } from './_helpers/http.interceptors';
+import { HttpRequestInterceptor } from './_helpers/http.interceptor';
 import { CustomerListComponent } from './_components/customer/customer-list/customer-list.component';
 import { CustomerDetailsComponent } from './_components/customer/customer-details/customer-details.component';
 import { CustomerCreateComponent } from './_components/customer/customer-create/customer-create.component';
@@ -31,6 +32,8 @@ import { PurchaseOrderListComponent } from './_components/purchase-order/purchas
 import { PurchaseOrderUpdateComponent } from './_components/purchase-order/purchase-order-update/purchase-order-update.component';
 import { PurchaseOrderDeleteComponent } from './_components/purchase-order/purchase-order-delete/purchase-order-delete.component';
 import { DatePipe } from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Page404Component } from './_components/errors/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -57,16 +60,25 @@ import { DatePipe } from '@angular/common';
     PurchaseOrderDetailsComponent,
     PurchaseOrderListComponent,
     PurchaseOrderUpdateComponent,
-    PurchaseOrderDeleteComponent
+    PurchaseOrderDeleteComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
-  providers: [httpInterceptorProviders, DatePipe],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    }, 
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

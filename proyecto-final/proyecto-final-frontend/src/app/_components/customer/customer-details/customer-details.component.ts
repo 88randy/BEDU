@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/_services/customer/customer.service';
 export class CustomerDetailsComponent implements OnInit {
   id!: number;
   customer: any;
+  responseStatus = 200;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,9 @@ export class CustomerDetailsComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.customer = data;
-      }, error => console.log(error));
+      }, error =>{
+        this.responseStatus = error.status;
+        console.log(error);
+      });
   }
 }

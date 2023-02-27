@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/_services/customer/customer.service';
+import { StorageService } from 'src/app/_services/storage.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -10,10 +11,13 @@ export class CustomerListComponent implements OnInit {
 
   customers: any;
   responseStatus = 200;
+  searchText: any;
+  roles: string[] = [];
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private storageService: StorageService) { }
 
   ngOnInit() {
+    this.roles = this.storageService.getUser().roles;
     this.customerService.getCustomersList().subscribe(
       data => {
         this.customers = data;
@@ -23,5 +27,4 @@ export class CustomerListComponent implements OnInit {
         this.responseStatus = error.status;
       });
   }
-
 }
