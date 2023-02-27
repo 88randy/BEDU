@@ -9,7 +9,7 @@ La aplicación es amigable y fácil de usar, ya que permite al usuario crear, ed
 
 Además, la aplicación utiliza una base de datos relacional para almacenar toda la información, lo que permite que los datos sean persistentes y estén disponibles en todo momento.
 
-En resumen, este proyecto es una implementación de un API sencilla de gestión de órdenes de compra, clientes y productos, gracias a la utilización de Spring Boot y JPA.
+En resumen, este proyecto es una implementación de un API sencilla de gestión de órdenes de compra, clientes y productos, gracias a la utilización de Spring Boot, JPA y Angular.
 
 ## Entidades :books:
 Las entidades del sistema son:
@@ -53,7 +53,7 @@ La aplicación cuenta con un proceso de autenticación de usuarios para tener el
 
 ## Publicación de la aplicación :triangular_flag_on_post:
 
-Se publicó la aplicación en los servicios de Amazon Web Services (AWS) así como la base de datos que utiliza, además está disponible para su uso dando click en: [Mi aplicación HSBC-BEDU](http://hsbcbedu-env.eba-jjfsw8ss.us-east-1.elasticbeanstalk.com), el usuario general es `admin` y el password es `admin`.
+Se publicó la aplicación en los servicios de Amazon Web Services (AWS) así como la base de datos que utiliza, además está disponible para su uso dando click en: [Mi aplicación HSBC-BEDU](http://hsbc-bedu-pf-purchase-orders.s3-website-us-east-1.amazonaws.com//), el usuario general es `admin` y el password es `123456789`.
 
 ## **Requerimientos** :bookmark_tabs:
 
@@ -62,6 +62,7 @@ Se publicó la aplicación en los servicios de Amazon Web Services (AWS) así co
 - `Maven`
 - Base de datos `MySQL`
 - Postman
+- Angular 15
 
 ## **Instrucciones** :clipboard:
 
@@ -75,7 +76,7 @@ Se publicó la aplicación en los servicios de Amazon Web Services (AWS) así co
 2. Ingresar a la carpeta del proyecto.
 
     ```
-    cd Bedu/Java Backend II/Proyecto
+    cd Bedu/proyecto-final/proyect-final-backend
     ```
 
 3. Abrir el archivo `application.properties` con cualquier editor de texto.
